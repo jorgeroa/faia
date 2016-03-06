@@ -1,0 +1,41 @@
+package frsf.ia.grupo9.search.ventas;
+
+public class Constantes {
+	
+	public static final String ESTADO_INICIAL = "ESTADO_INICIAL";
+	public static final String GENERAR_SOLICITUD_PRONOSTICO_DEMANDA = " GENERAR_SOLICITUD_PRONOSTICO_DEMANDA";
+	public static final String ENVIAR_FORECAST_REQUEST = "ENVIAR_FORECAST_REQUEST";
+	public static final String GENERAR_PRONOSTICO_VENTAS_POS = "GENERAR_PRONOSTICO_VENTAS_POS";
+	public static final String GENERAR_PLAN_EVENTOS_PROGRAMADOS = "GENERAR_PLAN_EVENTOS_PROGRAMADOS";
+	public static final String ENVIAR_INFORME_POSFORECAST = "ENVIAR_INFORME_POSFORECAST";
+	public static final String ENVIAR_PLAN_EVENTOS_PROGRAMADOS = "ENVIAR_PLAN_EVENTOS_PROGRAMADOS";
+	public static final String ENVIAR_CANCELACION_DEMANDA_FORECAST = "ENVIAR_CANCELACION_DEMANDA_FORECAST";
+	public static final String EVALUAR_PRONOSTICO_DEMANDA = "EVALUAR_PRONOSTICO_DEMANDA";
+	public static final String ENVIAR_ACEPTACION_PROPUESTA = "ENVIAR_ACEPTACION_PROPUESTA";
+	public static final String ACTUALIZAR_PRONOSTICO = "ACTUALIZAR_PRONOSTICO";
+	public static final String ENVIAR_PROPUESTA_PRONOSTICO_ACTUALIZADO = "ENVIAR_PROPUESTA_PRONOSTICO_ACTUALIZADO";
+	public static final String LEER_INFORME_ISSUES = "LEER_INFORME_ISSUES";
+	public static final String PROCESO_FINALIZADO_EXITO = "PROCESO_FINALIZADO_EXITO";
+	public static final String PROCESO_FINALIZADO_FRACASO = "PROCESO_FINALIZADO_FRACASO";
+
+    public static final String UNKNOWN_PERCEPTION = "UNKNOWN_PERCEPTION";
+    public static final String FORECAST_REQUEST = "FORECAST_REQUEST";
+    public static final String AGREE_FORECAST_REQUEST_RESPONSE = "AGREE_FORECAST_REQUEST_RESPONSE";
+    public static final String POS_FORECAST = "POS_FORECAST";
+    public static final String PLANNED_EVENTS = "PLANNED_EVENTS";
+    public static final String DEMAND_FORECAST_RESPONSE_YES = "DEMAND_FORECAST_RESPONSE_YES";
+    public static final String DEMAND_FORECAST_RESPONSE_NO = "DEMAND_FORECAST_RESPONSE_NO";
+    public static final String UPDATED_DEMAND_FORECAST = "UPDATED_DEMAND_FORECAST";
+    public static final String PROPOSE_DEMAND_FORECAST_1 = "PROPOSE_DEMAND_FORECAST_1";
+    public static final String PROPOSE_DEMAND_FORECAST_2 = "PROPOSE_DEMAND_FORECAST_2";
+    public static final String CANCELAR_DEMAND_FORECAST = "CANCELAR_DEMAND_FORECAST";
+    public static final String INFORM_ISSUES = "INFORM_ISSUES";
+    public static final String REFUSE_FORECAST_REQUEST_RESPONSE = "REFUSE_FORECAST_REQUEST_RESPONSE";
+    public static final String SUCCESS = "SUCCESS";
+    public static final String SUCCESS_STATE = "SUCCESS";
+    public static final String FAIL = "FAIL";
+    
+    public static final int HS_DIA = 24;
+    public static final int CICLOS_NEGOCIACION = 5;
+
+}
