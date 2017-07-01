@@ -9,40 +9,40 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package frsf.cidisi.faia.state;
 
 public abstract class MatlabEnvironmentState extends EnvironmentState {
 
-    private int startTime;
-    private int endTime;
-    private int step;
+	private int startTime;
+	private int endTime;
+	private int step;
 
-    public MatlabEnvironmentState(int startTime, int step) {
-        this.startTime = startTime;
-        this.step = step;
-        this.endTime = this.startTime + this.step;
-    }
+	public MatlabEnvironmentState(int startTime, int step) {
+		this.startTime = startTime;
+		this.step = step;
+		this.endTime = this.startTime + this.step;
+	}
 
-    public int getStartTime() {
-        return startTime;
-    }
+	public int getStartTime() {
+		return startTime;
+	}
 
-    public int getEndTime() {
-        return endTime;
-    }
+	public int getEndTime() {
+		return endTime;
+	}
 
-    public int getStep() {
-        return step;
-    }
+	public int getStep() {
+		return step;
+	}
 
-    public void nextTime() {
-        this.startTime = this.endTime;
-        this.endTime = this.startTime + this.step;
-    }
+	public void nextTime() {
+		this.startTime = this.endTime;
+		this.endTime = this.startTime + this.step;
+	}
 }

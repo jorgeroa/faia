@@ -9,11 +9,11 @@
  * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package frsf.cidisi.faia.state;
 
@@ -24,14 +24,14 @@ import frsf.cidisi.faia.agent.Perception;
  */
 public abstract class AgentState extends State {
 
-    public AgentState() {
-    }
+	public AgentState() {
+	}
 
-    /**
-     * This method updates the agent's state when receive a perception
-     * from the simulator. 
-     */
-    public abstract void updateState(Perception p);
+	/**
+	 * This method updates the agent's state when receive a perception
+	 * from the simulator.
+	 */
+	public abstract void updateState(Perception p);
 
-    public abstract String toString();
+	public abstract String toString();
 }

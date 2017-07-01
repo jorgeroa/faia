@@ -9,11 +9,11 @@
  * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package frsf.cidisi.faia.util;
 
@@ -21,45 +21,45 @@ import java.io.*;
 
 class PrintOut {
 
-    private File outputFile;
-    private FileWriter out;
+	private File outputFile;
+	private FileWriter out;
 
-    PrintOut(String name) throws Exception {
-        this(name, true);
-    }
+	PrintOut(String name) throws Exception {
+		this(name, true);
+	}
 
-    PrintOut(String name, boolean append) throws Exception {
+	PrintOut(String name, boolean append) throws Exception {
 
-        outputFile = new File(name);
+		outputFile = new File(name);
 
-        try {
+		try{
 
-            out = new FileWriter(outputFile, append);
+			out = new FileWriter(outputFile, append);
 
-        } catch (IOException ex) {
-            throw new Exception(ex.getMessage());
+		} catch(IOException ex){
+			throw new Exception(ex.getMessage());
 
-        }
+		}
 
-    }
+	}
 
-    public void write(String texto) throws Exception {
-        try {
+	public void write(String texto) throws Exception {
+		try{
 
-            out.write(texto);
+			out.write(texto);
 
-        } catch (IOException ex) {
-            throw new Exception(ex.getMessage());
-        }
-    }
+		} catch(IOException ex){
+			throw new Exception(ex.getMessage());
+		}
+	}
 
-    public void close() throws Exception {
-        try {
+	public void close() throws Exception {
+		try{
 
-            out.close();
+			out.close();
 
-        } catch (IOException ex) {
-            throw new Exception(ex.getMessage());
-        }
-    }
+		} catch(IOException ex){
+			throw new Exception(ex.getMessage());
+		}
+	}
 }

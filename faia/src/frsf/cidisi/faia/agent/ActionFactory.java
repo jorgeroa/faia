@@ -9,11 +9,11 @@
  * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package frsf.cidisi.faia.agent;
 
@@ -26,34 +26,35 @@ package frsf.cidisi.faia.agent;
  */
 public abstract class ActionFactory {
 
-    /**
-     * This method is executed before stringToAction, which is overrode
-     * by the user. If no action was returned by the agent, then we return
-     * a NoAction object.
-     * 
-     * @param stringAction
-     * @return The Action represented by stringAction
-     * @throws Exception 
-     */
-    public Action makeActionFromString(String stringAction) {
-        if (stringAction.equals(this.endActionString())) {
-            return NoAction.getInstance();
-        }
+	/**
+	 * This method is executed before stringToAction, which is overrode
+	 * by the user. If no action was returned by the agent, then we return
+	 * a NoAction object.
+	 * 
+	 * @param stringAction
+	 * @return The Action represented by stringAction
+	 * @throws Exception
+	 */
+	public Action makeActionFromString(String stringAction) {
+		if(stringAction.equals(this.endActionString())){
+			return NoAction.getInstance();
+		}
 
-        return this.stringToAction(stringAction);
-    }
+		return this.stringToAction(stringAction);
+	}
 
-    /**
-     * This method is overrode by the user.
-     * @param stringAction
-     * @return The Action represented by stringAction.
-     */
-    protected abstract Action stringToAction(String stringAction);
+	/**
+	 * This method is overrode by the user.
+	 * 
+	 * @param stringAction
+	 * @return The Action represented by stringAction.
+	 */
+	protected abstract Action stringToAction(String stringAction);
 
-    /**
-     * This method must return the string representation of an end action
-     * (which says the agent has reached the goal), used by the user in
-     * the prolog file.
-     */
-    protected abstract String endActionString();
+	/**
+	 * This method must return the string representation of an end action
+	 * (which says the agent has reached the goal), used by the user in
+	 * the prolog file.
+	 */
+	protected abstract String endActionString();
 }

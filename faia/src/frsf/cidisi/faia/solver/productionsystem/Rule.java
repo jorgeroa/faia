@@ -20,7 +20,7 @@ public interface Rule {
 	public void execute(Matches unificaciones);
 
 	public boolean finish(Matches value);
-	
+
 	public boolean finishLearning(Matches value);
 
 	@Override
@@ -28,5 +28,5 @@ public interface Rule {
 
 	@Override
 	public int hashCode();
-	
+
 }
