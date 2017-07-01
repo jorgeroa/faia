@@ -1,51 +1,29 @@
 package frsf.cidisi.faia.util;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Vector;
 
 import frsf.cidisi.faia.solver.search.NTree;
 
 public class TreeMLWriter {
 
-	private static final HashMap TYPES = new HashMap();
-	static {
-		TYPES.put(int.class, Constantes.INT);
-		TYPES.put(Integer.class, Constantes.INTEGER);
-		TYPES.put(Long.class, Constantes.LONG);
-		TYPES.put(Float.class, Constantes.FLOAT);
-		TYPES.put(Double.class, Constantes.DOUBLE);
-		TYPES.put(boolean.class, Constantes.BOOLEAN);
-		TYPES.put(String.class, Constantes.STRING);
-		TYPES.put(Date.class, Constantes.DATE);
-	}
-
 	private static int fileIdx = 0;
 	private static final String searchTreesDir = "TreeML/";
 
-	public static void printFile(NTree graph) {
+	public static void printFile(NTree node) {
 
 		File f = new File(searchTreesDir);
-		if (!f.exists()) {
+		if(!f.exists()){
 			f.mkdir();
 		}
 
-		FileOutputStream os = null;
-		try {
-			os = new FileOutputStream(new File(searchTreesDir + fileIdx
-					+ ".xml"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (os != null) {
+		try(FileOutputStream os = new FileOutputStream(new File(searchTreesDir + fileIdx
+				+ ".xml"))){
 
 			PrintWriter out = new PrintWriter(os);
 			XMLWriter xml = new XMLWriter(out);
@@ -53,49 +31,44 @@ public class TreeMLWriter {
 			xml.startTree(new Integer(fileIdx).toString());
 			fileIdx = fileIdx + 1;
 
-			NTree node = (NTree) graph.clone();
+			//			NTree node = (NTree) graph.clone();
 
-			while (node.getParent() != null)
+			while(node.getParent() != null){
 				node = node.getParent();
+			}
 
-			Vector<NTree> nodos = new Vector<NTree>();
+			List<NTree> nodos = node.getSonsTotal();
 			nodos.add(node);
-			nodos.addAll(node.getSonsTotal());
 
-			int totalNodes = nodos.size();
-
-			for (int i = 0; i < totalNodes; i++) {
-				NTree nodo = nodos.get(i);
-				escribirNodo(nodo, xml);
-				//escribirEnlaces(nodo, xml);
-			}
-
-			for (int i = 0; i < totalNodes; i++) {
-				NTree nodo = nodos.get(i);
-				escribirEnlaces(nodo, xml);
-			}
+			nodos.forEach(nodo -> escribirNodo(nodo, xml));
+			nodos.forEach(nodo -> escribirEnlaces(nodo, xml));
 
 			xml.end();
 			xml.finish();
+			out.close();
+		} catch(IOException e){
+			e.printStackTrace();
 		}
 	}
 
 	private static void escribirNodo(NTree tree, XMLWriter xml) {
-		String tag = Constantes.NODE;
-		ArrayList<String> names = new ArrayList<String>();
-		ArrayList<String> values = new ArrayList<String>();
+		String tag = Constant.NODE.toString();
+		ArrayList<String> names = new ArrayList<>();
+		ArrayList<String> values = new ArrayList<>();
 
-		names.add(Constantes.ID);
-		names.add(Constantes.ACTION);
-		names.add(Constantes.COST);
-		names.add(Constantes.AGENT_STATE);
+		names.add(Constant.ID.toString());
+		names.add(Constant.ACTION.toString());
+		names.add(Constant.COST.toString());
+		names.add(Constant.AGENT_STATE.toString());
 
 		Integer i = new Integer(tree.getExecutionOrder());
 		values.add(i.toString());
-		if (tree.getAction() == null)
+		if(tree.getAction() == null){
 			values.add("null");
-		else
+		}
+		else{
 			values.add(tree.getAction().toString());
+		}
 
 		values.add(new Double(tree.getCost()).toString());
 		values.add(tree.getAgentState().toString());
@@ -105,23 +78,23 @@ public class TreeMLWriter {
 	}
 
 	private static void escribirEnlaces(NTree tree, XMLWriter xml) {
-		String tag = Constantes.EDGE;
-		ArrayList<String> names = new ArrayList<String>();
-		ArrayList<String> values = new ArrayList<String>();
+		String tag = Constant.EDGE.toString();
+		ArrayList<String> names = new ArrayList<>();
+		ArrayList<String> values = new ArrayList<>();
 
-		NTree s = (NTree) tree.clone();
-		Vector<NTree> ts = s.getSons();
+		//tree = tree.clone();
+		Vector<NTree> ts = tree.getSons();
 
-		for (int i = 0; i < ts.size(); i++) {
-			names.add(Constantes.SOURCE);
-			names.add(Constantes.TARGET);
-			
-			values.add(new Integer(s.getExecutionOrder()).toString());
-			values.add(new Integer(ts.get(i).getExecutionOrder()).toString());
+		ts.forEach(son -> {
+			names.add(Constant.SOURCE.toString());
+			names.add(Constant.TARGET.toString());
 
-			xml.tag(tag, names, values, 2);
+			values.add(new Integer(tree.getExecutionOrder()).toString());
+			values.add(new Integer(son.getExecutionOrder()).toString());
+
+			xml.tag(tag, names, values, names.size());
 			names.clear();
 			values.clear();
-		}
+		});
 	}
 }
